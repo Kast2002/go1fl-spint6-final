@@ -22,7 +22,7 @@ func HandlerMain(w http.ResponseWriter, r *http.Request) {
 }
 
 func HandlerUpload(w http.ResponseWriter, r *http.Request) {
-	file, header, err := r.FormFile("index.html")
+	file, header, err := r.FormFile("myFile")
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -41,7 +41,7 @@ func HandlerUpload(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	fileName := time.Now().UTC().String()
+	fileName := time.Now().UTC().Format("2006-01-02_15-04-05")
 	ext := filepath.Ext(header.Filename)
 
 	newFile := fileName + ext
